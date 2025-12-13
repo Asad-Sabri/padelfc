@@ -88,33 +88,22 @@ export default function Hero() {
           EXPERIENCE BERLIN'S FIRST INDOOR PADEL CLUB! ENJOY PADEL ON AND OFF THE PITCH IN OUR NEW INDUSTRIAL LOACTION BY THE SPREE
         </motion.p>
         
-        <motion.button
-          className="inline-flex items-center gap-3 font-bold text-lg text-black bg-gradient-to-br from-yellow-300 to-yellow-500 rounded-xl shadow-lg"
-          style={{ padding: '1rem 2.5rem' }}
+        <motion.button 
+          className="font-open-sans px-10 py-3 sm:px-14 sm:py-3.5 rounded-lg text-base sm:text-lg font-bold bg-[#FEDD00] text-black shadow-md transition-all duration-300"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.4, ease: 'easeOut' }}
-          whileHover={{
+          transition={{ duration: 0.4, delay: 0.3, ease: "easeOut" }}
+          whileHover={{ 
             scale: 1.05,
-            y: -3,
-            boxShadow: '0 12px 24px rgba(0, 0, 0, 0.2)',
-            transition: { type: 'spring', stiffness: 300 }
+            y: -2,
+            backgroundColor: '#FFD700',
+            shadow: '0 10px 20px rgba(0,0,0,0.2)',
+            transition: { duration: 0.15 }
           }}
-          whileTap={{
-            scale: 0.95,
-            transition: { type: 'spring', stiffness: 400 }
-          }}
+          whileTap={{ scale: 0.97 }}
           onClick={(e) => handleSmoothScroll(e, '#contact', 90)}
         >
-          <span>Book Now</span>
-          <motion.div
-            initial={{ x: 0 }}
-            whileHover={{ x: 5, transition: { type: 'spring', stiffness: 300 } }}
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-            </svg>
-          </motion.div>
+          Book Now
         </motion.button>
       </motion.div>
     </section>
