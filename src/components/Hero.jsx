@@ -63,7 +63,7 @@ export default function Hero() {
           background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.4) 100%)'
         }}
       ></div>
-      {/* Content */}
+      
       <motion.div 
         className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto md:mt-28 lg:mt-32"
         initial={{ opacity: 0, y: 30 }}

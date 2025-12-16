@@ -28,7 +28,7 @@ export default function Header() {
 
   return (
     <>
-      {/* Mobile Header - Completely separate, fixed at top */}
+      {/* Mobile Header */}
       <motion.div 
         className="md:hidden fixed top-0 left-0 right-0 z-60 flex justify-between items-center w-full px-6 pt-8 pb-5"
         style={{ 
