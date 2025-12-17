@@ -1,66 +1,58 @@
-import { useRef, useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { useRef, useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+
+import img1 from '../../public/images/1.jpg';
+import img2 from '../../public/images/2.jpg';
+import img3 from '../../public/images/3.jpg';
+import img4 from '../../public/images/4.jpg';
+import img5 from '../../public/images/5.png';
+import img6 from '../../public/images/6.png';
+import img7 from '../../public/images/7.png';
+import img8 from '../../public/images/8.png';
+import img9 from '../../public/images/9.jpg';
 
 const events = [
-  {
-    title: '7AM CLUB',
-    meta: 'Community Event | Hamburg',
-    image: 'https://images.unsplash.com/photo-1518604666860-9ed391f76460?auto=format&fit=crop&w=1600&q=80',
-    badge: 'Morning Grind'
-  },
-  {
-    title: 'PADEL & MUSIC',
-    meta: 'Night Session | Berlin',
-    image: 'https://images.unsplash.com/photo-1505961232864-21c5f45b4f4a?auto=format&fit=crop&w=1600&q=80',
-    badge: 'Live DJ Set'
-  },
-  {
-    title: 'RIVER CUP',
-    meta: 'Tournament | Spree',
-    image: 'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1600&q=80',
-    badge: 'Finals Weekend'
-  },
-  {
-    title: 'CITY LIGHTS',
-    meta: 'After Work | Berlin',
-    image: 'https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf?auto=format&fit=crop&w=1600&q=80',
-    badge: 'Twilight Play'
-  }
-]
-
+  { title: '7AM CLUB', meta: 'Community Event | Hamburg', image: img1, badge: 'Morning Grind' },
+  { title: 'PADEL & MUSIC', meta: 'Night Session | Berlin', image: img2, badge: 'Live DJ Set' },
+  { title: 'RIVER CUP', meta: 'Tournament | Spree', image: img3, badge: 'Finals Weekend' },
+  { title: 'CITY LIGHTS', meta: 'After Work | Berlin', image: img4, badge: 'Twilight Play' },
+  { title: 'SUNRISE MATCH', meta: 'Early Morning | Hamburg', image: img5, badge: 'Golden Hour' },
+  { title: 'MIDDAY PADEL', meta: 'Afternoon Session | Berlin', image: img6, badge: 'Power Play' },
+  { title: 'EVENING CHALLENGE', meta: 'Evening Event | Spree', image: img7, badge: 'Sunset Smash' },
+  { title: 'NIGHT PADEL', meta: 'Night Session | Berlin', image: img8, badge: 'Moonlight Rally' },
+  { title: 'FINALS WEEKEND', meta: 'Tournament | Hamburg', image: img9, badge: 'Championship' }
+];
 export default function EventShowcase() {
-  const trackRef = useRef(null)
-  const [isAtEnd, setIsAtEnd] = useState(false)
-  const [isAtStart, setIsAtStart] = useState(true)
+  const trackRef = useRef(null);
+  const [isAtEnd, setIsAtEnd] = useState(false);
+  const [isAtStart, setIsAtStart] = useState(true);
 
   useEffect(() => {
-    const el = trackRef.current
-    if (!el) return
-    const tolerance = 24 // helps avoid tiny offsets from padding/scroll snap
+    const el = trackRef.current;
+    if (!el) return;
+    const tolerance = 24;
 
     const handleScroll = () => {
-      setIsAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - tolerance)
-      setIsAtStart(el.scrollLeft <= tolerance)
-    }
+      setIsAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - tolerance);
+      setIsAtStart(el.scrollLeft <= tolerance);
+    };
 
-    handleScroll()
-    el.addEventListener('scroll', handleScroll)
-    return () => el.removeEventListener('scroll', handleScroll)
-  }, [])
+    handleScroll();
+    el.addEventListener('scroll', handleScroll);
+    return () => el.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const scrollNext = () => {
-    const el = trackRef.current
-    if (!el) return
-    const shift = el.clientWidth * 0.8
-    el.scrollBy({ left: shift, behavior: 'smooth' })
-  }
+    const el = trackRef.current;
+    if (!el) return;
+    el.scrollBy({ left: el.clientWidth * 0.8, behavior: 'smooth' });
+  };
 
   const scrollPrev = () => {
-    const el = trackRef.current
-    if (!el) return
-    const shift = el.clientWidth * 0.8
-    el.scrollBy({ left: -shift, behavior: 'smooth' })
-  }
+    const el = trackRef.current;
+    if (!el) return;
+    el.scrollBy({ left: -el.clientWidth * 0.8, behavior: 'smooth' });
+  };
 
   return (
     <section className="w-full bg-black text-white overflow-hidden">
@@ -72,7 +64,7 @@ export default function EventShowcase() {
         >
           {events.map((event, index) => (
             <motion.div
-              key={event.title}
+              key={index}
               className="relative snap-start flex-shrink-0 w-[74vw] sm:w-[56vw] lg:w-[30vw] xl:w-[26vw] max-h-[88vh] first:ml-0 last:mr-0 sm:ml-0 sm:mr-0"
               style={{ aspectRatio: '9 / 16' }}
               initial={{ opacity: 0, y: 30 }}
@@ -137,5 +129,5 @@ export default function EventShowcase() {
         )}
       </div>
     </section>
-  )
+  );
 }

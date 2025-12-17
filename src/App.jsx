@@ -8,7 +8,7 @@ import Footer from './components/Footer'
 
 function App() {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-white">
+    <div className="min-h-screen overflow-hidden bg-white">
       <Header />
       <main className="md:pt-0 pt-0">
         <Hero />

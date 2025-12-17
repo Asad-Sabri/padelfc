@@ -1,27 +1,27 @@
-import { motion } from 'framer-motion';
-import court from '../assets/icons/court.svg';
-import indoor from '../assets/icons/indoor.svg';
-import location from '../assets/icons/location.svg';
+import { motion } from "framer-motion";
+import court from "../assets/icons/court.svg";
+import indoor from "../assets/icons/indoor.svg";
+import location from "../assets/icons/location.svg";
 
 const features = [
   {
     id: "01",
     icon: court,
     title: "Riverside Court",
-    desc: "Play with water-side views on the banks of the Spree. A one-of-a-kind setting where sport meets atmosphere."
+    desc: "Play with water-side views on the banks of the Spree. A one-of-a-kind setting where sport meets atmosphere.",
   },
   {
     id: "02",
     icon: indoor,
     title: "Premium Indoor Courts",
-    desc: "Year-round play in industrial-style indoor courts with pro lighting and ideal conditions."
+    desc: "Year-round play in industrial-style indoor courts with pro lighting and ideal conditions.",
   },
   {
     id: "03",
     icon: location,
     title: "Perfect Location",
-    desc: "5 mins from Berlin Ostkreuz. Soon: floating saunas & riverside gastronomy."
-  }
+    desc: "5 mins from Berlin Ostkreuz. Soon: floating saunas & riverside gastronomy.",
+  },
 ];
 
 const cardVariants = {
@@ -32,26 +32,28 @@ const cardVariants = {
     transition: {
       delay: i * 0.1,
       duration: 0.4,
-      ease: 'easeOut'
-    }
-  })
+      ease: "easeOut",
+    },
+  }),
 };
 
 export default function Cards() {
   return (
-    <section id="about" className="w-full py-20 md:py-32">
+    <section id="about" className="w-full py-0 md:py-25">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-20 max-w-3xl mx-auto">
-          <p className="text-sm font-semibold text-slate-500 uppercase tracking-widest">
+          <p className="text-md font-semibold text-slate-500 uppercase tracking-widest">
             Why Padel FC
           </p>
           <h2 className="mt-4 text-3xl font-akira font-bold text-slate-900 sm:text-4xl md:text-5xl">
             A Unique Padel Experience
           </h2>
           <p className="mt-6 text-base text-slate-600 md:text-lg">
-            Every detail of our club is designed to elevate your match day—from our thoughtfully designed courts to our vibrant community atmosphere.
+            {/* Every detail of our club is designed to elevate your match day—from our thoughtfully designed courts to our vibrant community atmosphere. */}
+            PadelHaus offers padel within an elevated sports environment,
+            alongside Beach Volleyball, PickleHaus, floating saunas, and more
+            sports concepts to come making it a vibrant sports hub.
           </p>
         </div>
 
@@ -69,7 +71,11 @@ export default function Cards() {
             >
               <div className="p-8">
                 <div className="flex items-center justify-center h-16 w-16 mb-6 rounded-full bg-slate-100">
-                  <img src={feature.icon} alt={`${feature.title} icon`} className="h-8 w-8 text-slate-700" />
+                  <img
+                    src={feature.icon}
+                    alt={`${feature.title} icon`}
+                    className="h-8 w-8 text-slate-700"
+                  />
                 </div>
                 <h3 className="mb-3 text-xl font-bold text-slate-900">
                   {feature.title}
@@ -83,5 +89,5 @@ export default function Cards() {
         </div>
       </div>
     </section>
-  )
+  );
 }

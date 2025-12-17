@@ -1,111 +1,136 @@
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { handleSmoothScroll } from '../utils/smoothScroll'
-import desktopVideoSrc from '../assets/padelhaus-2-desktop.mp4'
-import mobileVideoSrc from '../assets/padelhaus-2-mobile.mp4'
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { handleSmoothScroll } from "../utils/smoothScroll";
+import desktopVideo from "../../public/videos/padelhaus-2-desktop.mp4";
+import mobileVideo from "../../public/videos/padelhaus-2-mobile.mp4";
 
 export default function Hero() {
-  const [videoError, setVideoError] = useState(false)
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+  const [videoError, setVideoError] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
     // Check for reduced motion preference
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setPrefersReducedMotion(mediaQuery.matches)
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mediaQuery.matches);
 
-    const handleChange = (e) => setPrefersReducedMotion(e.matches)
-    mediaQuery.addEventListener('change', handleChange)
-    return () => mediaQuery.removeEventListener('change', handleChange)
-  }, [])
+    const handleChange = (e) => setPrefersReducedMotion(e.matches);
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
 
   return (
-    <section 
-      id="home" 
+    <section
+      id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       {/* Video Background */}
       {!prefersReducedMotion && (
+        // <video
+        //   className="absolute inset-0 w-full h-full object-cover"
+        //   style={{
+        //     objectPosition: "center 40%", // Show more of the middle/bottom part of video
+        //   }}
+        //   autoPlay
+        //   loop
+        //   muted
+        //   playsInline
+        //   poster="https://images.unsplash.com/photo-1622278647429-71f511b0aaf0?auto=format&fit=crop&w=1920&q=80"
+        //   onCanPlay={() => setVideoError(false)}
+        //   onError={(e) => {
+        //     console.log("Video error:", e);
+        //     setVideoError(true);
+        //   }}
+        // >
+        //   <source
+        //     src={mobileVideoSrc}
+        //     type="video/mp4"
+        //     media="(max-width: 768px)"
+        //   />
+        //   <source src={desktopVideoSrc} type="video/mp4" />
+        // </video>
         <video
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ 
-            objectPosition: 'center 40%' // Show more of the middle/bottom part of video
-          }}
+          className="absolute inset-0 w-full h-full object-cover overflow-hidden"
+          style={{ objectPosition: "center 40%" }}
           autoPlay
           loop
           muted
           playsInline
+          preload="metadata"
           poster="https://images.unsplash.com/photo-1622278647429-71f511b0aaf0?auto=format&fit=crop&w=1920&q=80"
           onCanPlay={() => setVideoError(false)}
-          onError={(e) => {
-            console.log('Video error:', e)
-            setVideoError(true)
-          }}
+          onError={(e) => setVideoError(true)}
         >
-          <source src={mobileVideoSrc} type="video/mp4" media="(max-width: 768px)" />
-          <source src={desktopVideoSrc} type="video/mp4" />
+          <source
+            src={mobileVideo}
+            type="video/mp4"
+            media="(max-width: 768px)"
+          />
+          <source src={desktopVideo} type="video/mp4" />
         </video>
       )}
-      
+
       {/* Fallback background image */}
       {(videoError || prefersReducedMotion) && (
-        <div 
+        <div
           className="absolute inset-0 w-full h-full bg-cover bg-center"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1622278647429-71f511b0aaf0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`
+            backgroundImage: `url('https://images.unsplash.com/photo-1622278647429-71f511b0aaf0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`,
           }}
         />
       )}
-      
+
       {/* Gradient overlay for better text readability */}
-      <div 
+      <div
         className="absolute inset-0"
         style={{
-          background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.4) 100%)'
+          background:
+            "linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.4) 100%)",
         }}
       ></div>
-      
-      <motion.div 
+
+      <motion.div
         className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto md:mt-28 lg:mt-32"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
       >
-        <motion.h1 
+        <motion.h1
           className="font-akira text-3xl sm:text-5xl md:text-6xl lg:text-5xl font-bold text-white mb-8 sm:mb-10 md:mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
         >
-          Berlin, Let's Padel
+          <span className="">Berlin ,</span>
+          <br /> <span className="">Let's Padel</span>
         </motion.h1>
-        
-        <motion.p 
+
+        <motion.p
           className="font-open-sans text-base sm:text-lg md:text-xl text-white mb-8 sm:mb-12 max-w-2xl mx-auto opacity-90"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
         >
-          EXPERIENCE BERLIN'S FIRST INDOOR PADEL CLUB! ENJOY PADEL ON AND OFF THE PITCH IN OUR NEW INDUSTRIAL LOACTION BY THE SPREE
+          {/* EXPERIENCE BERLIN'S FIRST INDOOR PADEL CLUB! ENJOY PADEL ON AND OFF THE PITCH IN OUR NEW INDUSTRIAL LOACTION BY THE SPREE */}
         </motion.p>
-        
-        <motion.button 
+
+        <motion.button
           className="font-open-sans px-10 py-3 sm:px-14 sm:py-3.5 rounded-lg text-base sm:text-lg font-bold bg-[#FEDD00] text-black shadow-md transition-all duration-300"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.3, ease: "easeOut" }}
-          whileHover={{ 
+          whileHover={{
             scale: 1.05,
             y: -2,
-            backgroundColor: '#FFD700',
-            shadow: '0 10px 20px rgba(0,0,0,0.2)',
-            transition: { duration: 0.15 }
+            backgroundColor: "#FFD700",
+            shadow: "0 10px 20px rgba(0,0,0,0.2)",
+            transition: { duration: 0.15 },
           }}
           whileTap={{ scale: 0.97 }}
-          onClick={(e) => handleSmoothScroll(e, '#contact', 90)}
+          onClick={(e) => handleSmoothScroll(e, "#contact", 90)}
         >
           Book Now
         </motion.button>
       </motion.div>
     </section>
-  )
+  );
 }

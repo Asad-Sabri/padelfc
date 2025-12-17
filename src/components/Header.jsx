@@ -30,7 +30,7 @@ export default function Header() {
     <>
       {/* Mobile Header */}
       <motion.div 
-        className="md:hidden fixed top-0 left-0 right-0 z-60 flex justify-between items-center w-full px-6 pt-8 pb-5"
+        className="md:hidden fixed top-0 left-0 right-0 z-60 flex justify-between items-center w-full px-6 pt-8 pb-5 text-black"
         style={{ 
           background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 70%, rgba(0, 0, 0, 0) 100%)',
           height: 'auto',
